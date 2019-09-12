@@ -8,6 +8,7 @@
 #PBS -j oe
 #PBS -o /home/mrphys/jontay/tmp
 
+tp=2011
 root=/project/3015006.07
 project=$root/JT/vbm_${tp}/
 
