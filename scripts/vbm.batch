@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#PBS -N vbm_2
+#PBS -q batch
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l mem=6gb
+#PBS -j oe
+#PBS -o /home/mrphys/jontay/tmp
+
+module load ANTs
+
+root=/project/3015006.07
+id_file=
+subj_list=($(cat $id_file))
+subj=${subj_list[${PBS_ARRAY_ID}]}
+
+mri_binarize --i aparc+aseg.mgz --gm --o gm.mgz
+mri_vol2vol --mov gm.mgz --targ rawavg.mgz --regheader --o gm_in_rawavg.nii.gz --no-save-reg
+rm gm.mgz
+
+antsRegistrationSyN.sh -d 3 -f -m -o ${subjid}_ -n 4
