@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#PBS -N vbm_2
+#PBS -q batch
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -j oe
+#PBS -o /home/mrphys/jontay/tmp
+
+module load ANTs
+
+tp=2011
+root=/project/3015006.07
+project=$root/JT/vbm_${tp}/
+fs=$root/JT/FS
+id_file=$project/t1w_${tp}.txt
+subj_list=($(cat $id_file))
+subj=${subj_list[${PBS_ARRAYID}]}
+output_dir=$project/nlin_template
+
+cd $project
+
+antsRegistrationSyN.sh -d 3 -f template_358.nii.gz -m gm_seg/${subj}.nii.gz \
+                       -o $output_dir/${subj}_ -n 4
+
+cd $output_dir
+
+rm ${subj}_1InverseWarp.nii.gz ${subj}_InverseWarped.nii.gz
+CreateJacobianDeterminantImage 3 ${subj}_1Warp.nii.gz ${subj}_Jacobian.nii.gz
+
+fslmaths ${subj}_Warped.nii.gz -mul ${subj}_Jacobian.nii.gz ${subj}_mod
+fslmaths ${subj}_mod.nii.gz -s 8 ${subj}_mod_8mm
