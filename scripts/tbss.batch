@@ -1,0 +1,39 @@
+#!/bin/bash 
+
+#PBS -N dtifit_and_reg
+#PBS -q batch
+#PBS -l nodes=1:ppn=4
+#PBS -j oe
+#PBS -l walltime=48:00:00
+#PBS -l mem=6gb
+#PBS -o /home/mrphys/jontay/tmp
+
+module load ANTs
+
+root=/project/3015006.07
+tp=2006
+id_file=$root/JT/scripts/subject_lists/dti_$tp.txt
+subj_list=($(cat $id_file))
+subj=${subj_list[${PBS_ARRAYID}]}
+subjid=${subj}_${tp}
+subj_dir=$root/Data/$subj/$tp
+project_dir=$root/JT/tbss
+std=/opt/fsl/6.0.0/data/standard/FSL_HCP1065_FA_1mm.nii.gz
+
+cd $subj_dir
+
+dtifit -k dwi_brain.nii.gz -o dti -m nodif_brain_mask.nii.gz -r bvecs -b bvals
+
+fslmaths dti_FA.nii.gz -thr 0 -uthr 1 dti_FA_thr
+
+antsRegistrationSyN.sh -d 3 -f $std -m dti_FA_thr.nii.gz -t s \
+  -o $project_dir/fa2std_${tp}/${subjid}_ -n 4
+
+python $root/JT/tbss/scripts/inspect_img.py \
+  $std $project_dir/fa2std_${tp}/${subjid}_Warped.nii.gz \
+  $project_dir/qc/${subjid}.png
+
+rm dti*
+
+#rm $project_dir/fa2std_${tp}/${subjid}*Warp.nii.gz
+
