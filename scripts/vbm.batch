@@ -4,19 +4,27 @@
 #PBS -q batch
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=48:00:00
-#PBS -l mem=6gb
+#PBS -l mem=8gb
 #PBS -j oe
 #PBS -o /home/mrphys/jontay/tmp
 
 module load ANTs
 
+tp=2011
 root=/project/3015006.07
-id_file=
+project=$root/JT/vbm_${tp}/
+fs=$root/JT/FS
+id_file=$project/t1w_${tp}.txt
 subj_list=($(cat $id_file))
 subj=${subj_list[${PBS_ARRAY_ID}]}
+fs_subj_dir=$fs/${subj}_${tp}.long.${subj}_template
+output_dir=$project/nlin_standard
+
+cd $fs_subj_dir/mri
 
 mri_binarize --i aparc+aseg.mgz --gm --o gm.mgz
 mri_vol2vol --mov gm.mgz --targ rawavg.mgz --regheader --o gm_in_rawavg.nii.gz --no-save-reg
 rm gm.mgz
 
-antsRegistrationSyN.sh -d 3 -f -m -o ${subjid}_ -n 4
+antsRegistrationSyN.sh -d 3 -f $project/gm.nii.gz -m gm_in_rawavg.nii.gz \
+                       -o $output_dir/${subj}_ -n 4
