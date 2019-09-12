@@ -9,10 +9,11 @@ img_list = [os.path.join(fpath, x) for x in img_list]
 
 example_img = nib.load(img_list[0])
 template = np.zeros(example_img.get_data().shape)
-print(example_img.affine)
 
-# for i in os.listdir(fpath):
-#     template += nib.load(i).get_data()
+for i in os.listdir(fpath):
+    template += nib.load(i).get_data()
 
-# template = template / len(img_list)
-# template_img = nib.Nifti1Image(template, example_img.affine)
+n_imgs = len(img_list)
+template = template / n_imgs
+template_img = nib.Nifti1Image(template, example_img.affine)
+nib.save(template_img, os.path.join(fpath, f'template_{n_imgs}.nii.gz'))
