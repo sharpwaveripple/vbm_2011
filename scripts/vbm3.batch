@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -N vbm_2
+#PBS -N vbm_3
 #PBS -q batch
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=48:00:00
