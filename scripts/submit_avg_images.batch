@@ -16,8 +16,8 @@ cd $project
 
 python scripts/average_imgs.py nlin_standard/warped/
 
-# cd nlin_standard/warped
-# fslswapdim template_358.nii.gz -x y z template_GM_flipped
-# fslmaths template_358.nii.gz -add template_GM_flipped.nii.gz -div 2 template_averaged.nii.gz
-# rm template_358.nii.gz template_GM_flipped.nii.gz
-# mv template_averaged.nii.gz ../template_358.nii.gz
+cd nlin_standard/warped
+fslswapdim template_358.nii.gz -x y z template_GM_flipped
+fslmaths template_358.nii.gz -add template_GM_flipped.nii.gz -div 2 template_averaged.nii.gz
+rm template_358.nii.gz template_GM_flipped.nii.gz
+mv template_averaged.nii.gz ../template_358.nii.gz

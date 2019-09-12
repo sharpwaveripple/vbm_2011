@@ -15,7 +15,7 @@ for i in img_list:
 
 n_imgs = len(img_list)
 template = template / n_imgs
-template_flipped = np.fliplr(template)
-template = (template + template_flipped) / 2
+# template_flipped = np.fliplr(template)
+# template = (template + template_flipped) / 2
 template_img = nib.Nifti1Image(template, example_img.affine)
 nib.save(template_img, os.path.join(fpath, f'template_{n_imgs}.nii.gz'))
