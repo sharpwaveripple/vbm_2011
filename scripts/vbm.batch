@@ -16,7 +16,7 @@ project=$root/JT/vbm_${tp}/
 fs=$root/JT/FS
 id_file=$project/t1w_${tp}.txt
 subj_list=($(cat $id_file))
-subj=${subj_list[${PBS_ARRAY_ID}]}
+subj=${subj_list[${PBS_ARRAYID}]}
 fs_subj_dir=$fs/${subj}_${tp}.long.${subj}_template
 output_dir=$project/nlin_standard
 
