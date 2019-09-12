@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#PBS -N make_template
+#PBS -q batch
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=48:00:00
+#PBS -l mem=32gb
+#PBS -j oe
+#PBS -o /home/mrphys/jontay/tmp
+
+root=/project/3015006.07
+project=$root/JT/vbm_${tp}/
+
+cd $project
+
+python scripts/average_imgs.py nlin_standard/warped/
+
+cd nlin_standard/warped
+fslswapdim template_358.nii.gz -x y z template_GM_flipped
+fslmaths template_358.nii.gz -add template_GM_flipped.nii.gz -div 2 template_averaged.nii.gz
+rm template_358.nii.gz template_GM_flipped.nii.gz
+mv template_averaged.nii.gz ../template_358.nii.gz
