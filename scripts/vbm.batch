@@ -25,6 +25,8 @@ cd $fs_subj_dir/mri
 mri_binarize --i aparc+aseg.mgz --gm --o gm.mgz
 mri_vol2vol --mov gm.mgz --targ rawavg.mgz --regheader --o gm_in_rawavg.nii.gz --no-save-reg
 rm gm.mgz
+mv gm_in_rawavg.nii.gz $project/gm_seg/${subj}.nii.gz
+cd $project
 
-antsRegistrationSyN.sh -d 3 -f $project/gm.nii.gz -m gm_in_rawavg.nii.gz \
+antsRegistrationSyN.sh -d 3 -f gm.nii.gz -m gm_seg/${subj}.nii.gz \
                        -o $output_dir/${subj}_ -n 4
