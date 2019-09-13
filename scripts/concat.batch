@@ -8,6 +8,12 @@
 #PBS -j oe
 #PBS -o /home/mrphys/jontay/tmp
 
+tp=2011
+root=/project/3015006.07
+project=$root/JT/vbm_${tp}/
+
+cd $project/nlin_template/smoothed_8mm
+
 fslmerge -t t1w_8mm_merged 001_mod_8mm.nii.gz 002_mod_8mm.nii.gz 004_mod_8mm.nii.gz \
     006_mod_8mm.nii.gz 008_mod_8mm.nii.gz 011_mod_8mm.nii.gz \
     012_mod_8mm.nii.gz 013_mod_8mm.nii.gz 014_mod_8mm.nii.gz \
