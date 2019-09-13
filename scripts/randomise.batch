@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#PBS -N randomise
+#PBS -q batch
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=48:00:00
+#PBS -l mem=32gb
+#PBS -j oe
+#PBS -o /home/mrphys/jontay/tmp
+
+tp=2011
+root=/project/3015006.07
+project=$root/JT/vbm_${tp}/
+
+cd $project
+
+randomise -i nlin_template/smoothed_8mm/t1w_8mm_merged.nii.gz \
+          -o randomise/AEStotal_ \
+          -d scripts/design.mat -t scripts/design.con \
+          -n 2000 -T
