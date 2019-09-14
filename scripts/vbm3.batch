@@ -28,7 +28,7 @@ cd $output_dir
 
 # rm ${subj}_1InverseWarp.nii.gz ${subj}_InverseWarped.nii.gz
 # CreateJacobianDeterminantImage 3 ${subj}_1Warp.nii.gz ${subj}_Jacobian.nii.gz
-ANTSJacobian 3 ${subj}_1Warp.nii.gz ${subj}_
+# ANTSJacobian 3 ${subj}_1Warp.nii.gz ${subj}_
 
-fslmaths ${subj}_Warped.nii.gz -mul ${subj}_jacobian.nii.gz ${subj}_mod
-fslmaths ${subj}_mod.nii.gz -s 8 ${subj}_mod_8mm
+# fslmaths ${subj}_Warped.nii.gz -mul ${subj}_jacobian.nii.gz ${subj}_mod
+fslmaths ${subj}_mod.nii.gz -s 4 ${subj}_mod_8mm
