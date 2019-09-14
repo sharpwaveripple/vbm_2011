@@ -17,4 +17,4 @@ cd $project
 randomise -i nlin_template/smoothed_8mm/t1w_8mm_merged.nii.gz \
           -o randomise/AEStotal \
           -d scripts/design.mat -t scripts/design.con \
-          -n 2000 -T
+          -n 2000 -T -m gm.nii.gz
