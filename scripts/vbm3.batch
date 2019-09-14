@@ -31,4 +31,4 @@ cd $output_dir
 # ANTSJacobian 3 ${subj}_1Warp.nii.gz ${subj}_
 
 # fslmaths ${subj}_Warped.nii.gz -mul ${subj}_jacobian.nii.gz ${subj}_mod
-fslmaths ${subj}_mod.nii.gz -s 4 ${subj}_mod_8mm
+fslmaths ${subj}_mod.nii.gz -s 4 ${subj}_mod_4mm
