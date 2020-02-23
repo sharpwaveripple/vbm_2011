@@ -17,7 +17,7 @@ mm=4mm
 cd $project/
 mkdir modulated/
 mod_files=$(ls $project/nlin_template/gm_mod)
-for i in mod_files; do
+for i in $mod_files; do
     echo $i
 done
 # for mm in 2 4 6 8; do
