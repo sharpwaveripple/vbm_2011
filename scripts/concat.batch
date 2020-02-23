@@ -23,7 +23,7 @@ for i in 4 6 8; do
     mkdir $i
     for j in $mod_files; do
         subj=$(echo $j | cut -d'_' -f1)
-        fslmaths $mod_files/${subj}_mod.nii.gz -s $i $i/${subj}.nii.gz
+        fslmaths $project/nlin_template/gm_mod/${subj}_mod.nii.gz -s $i $i/${subj}.nii.gz
     done
     cd $i
 
