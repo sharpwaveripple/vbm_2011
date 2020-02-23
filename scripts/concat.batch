@@ -17,14 +17,125 @@ mm=4mm
 cd $project/
 mkdir modulated/
 mod_files=$(ls $project/nlin_template/gm_mod)
-for i in $mod_files; do
-    subj=$(echo $i | cut -d'_' -f1)
-    echo $subj
+
+for i in 4 6 8; do
+    cd $project/modulated
+    mkdir $i
+    for j in $mod_files; do
+        subj=$(echo $j | cut -d'_' -f1)
+        fslmaths $mod_files/${subj}_mod.nii.gz -s $i $i/${subj}.nii.gz
+    done
+    cd $i
+
+    fslmerge -t t1w_${i}mm_merged 001.nii.gz 002.nii.gz 004.nii.gz \
+            006.nii.gz 008.nii.gz 011.nii.gz \
+            012.nii.gz 013.nii.gz 014.nii.gz \
+            015.nii.gz 016.nii.gz 017.nii.gz \
+            020.nii.gz 025.nii.gz 026.nii.gz \
+            027.nii.gz 028.nii.gz 030.nii.gz \
+            033.nii.gz 035.nii.gz 036.nii.gz \
+            037.nii.gz 040.nii.gz 041.nii.gz \
+            042.nii.gz 043.nii.gz 044.nii.gz \
+            046.nii.gz 048.nii.gz 049.nii.gz \
+            050.nii.gz 052.nii.gz 053.nii.gz \
+            058.nii.gz 059.nii.gz 061.nii.gz \
+            062.nii.gz 065.nii.gz 067.nii.gz \
+            070.nii.gz 071.nii.gz 072.nii.gz \
+            073.nii.gz 074.nii.gz 075.nii.gz \
+            077.nii.gz 078.nii.gz 080.nii.gz \
+            081.nii.gz 083.nii.gz 084.nii.gz \
+            085.nii.gz 086.nii.gz 087.nii.gz \
+            090.nii.gz 091.nii.gz 092.nii.gz \
+            094.nii.gz 096.nii.gz 097.nii.gz \
+            099.nii.gz 100.nii.gz 101.nii.gz \
+            106.nii.gz 107.nii.gz 108.nii.gz \
+            110.nii.gz 112.nii.gz 113.nii.gz \
+            114.nii.gz 116.nii.gz 117.nii.gz \
+            119.nii.gz 121.nii.gz 123.nii.gz \
+            124.nii.gz 125.nii.gz 127.nii.gz \
+            128.nii.gz 129.nii.gz 130.nii.gz \
+            131.nii.gz 133.nii.gz 135.nii.gz \
+            136.nii.gz 137.nii.gz 139.nii.gz \
+            140.nii.gz 141.nii.gz 142.nii.gz \
+            143.nii.gz 146.nii.gz 147.nii.gz \
+            148.nii.gz 152.nii.gz 153.nii.gz \
+            154.nii.gz 155.nii.gz 156.nii.gz \
+            158.nii.gz 159.nii.gz 161.nii.gz \
+            162.nii.gz 163.nii.gz 166.nii.gz \
+            169.nii.gz 172.nii.gz 173.nii.gz \
+            175.nii.gz 176.nii.gz 177.nii.gz \
+            178.nii.gz 183.nii.gz 186.nii.gz \
+            190.nii.gz 193.nii.gz 195.nii.gz \
+            199.nii.gz 200.nii.gz 202.nii.gz \
+            205.nii.gz 206.nii.gz 207.nii.gz \
+            209.nii.gz 210.nii.gz 212.nii.gz \
+            213.nii.gz 214.nii.gz 215.nii.gz \
+            217.nii.gz 218.nii.gz 219.nii.gz \
+            220.nii.gz 223.nii.gz 225.nii.gz \
+            226.nii.gz 227.nii.gz 228.nii.gz \
+            229.nii.gz 230.nii.gz 231.nii.gz \
+            232.nii.gz 233.nii.gz 234.nii.gz \
+            237.nii.gz 238.nii.gz 239.nii.gz \
+            242.nii.gz 243.nii.gz 244.nii.gz \
+            245.nii.gz 247.nii.gz 248.nii.gz \
+            249.nii.gz 252.nii.gz 254.nii.gz \
+            256.nii.gz 257.nii.gz 259.nii.gz \
+            260.nii.gz 263.nii.gz 265.nii.gz \
+            266.nii.gz 267.nii.gz 271.nii.gz \
+            272.nii.gz 274.nii.gz 275.nii.gz \
+            276.nii.gz 277.nii.gz 278.nii.gz \
+            281.nii.gz 284.nii.gz 286.nii.gz \
+            288.nii.gz 289.nii.gz 290.nii.gz \
+            291.nii.gz 292.nii.gz 295.nii.gz \
+            296.nii.gz 297.nii.gz 298.nii.gz \
+            303.nii.gz 306.nii.gz 307.nii.gz \
+            308.nii.gz 309.nii.gz 310.nii.gz \
+            311.nii.gz 312.nii.gz 314.nii.gz \
+            317.nii.gz 318.nii.gz 319.nii.gz \
+            321.nii.gz 322.nii.gz 323.nii.gz \
+            325.nii.gz 326.nii.gz 327.nii.gz \
+            330.nii.gz 331.nii.gz 333.nii.gz \
+            335.nii.gz 336.nii.gz 337.nii.gz \
+            339.nii.gz 340.nii.gz 341.nii.gz \
+            342.nii.gz 344.nii.gz 347.nii.gz \
+            348.nii.gz 351.nii.gz 352.nii.gz \
+            353.nii.gz 356.nii.gz 357.nii.gz \
+            358.nii.gz 361.nii.gz 362.nii.gz \
+            363.nii.gz 364.nii.gz 365.nii.gz \
+            366.nii.gz 367.nii.gz 368.nii.gz \
+            369.nii.gz 371.nii.gz 375.nii.gz \
+            377.nii.gz 378.nii.gz 379.nii.gz \
+            383.nii.gz 384.nii.gz 386.nii.gz \
+            387.nii.gz 388.nii.gz 389.nii.gz \
+            394.nii.gz 397.nii.gz 398.nii.gz \
+            399.nii.gz 401.nii.gz 402.nii.gz \
+            403.nii.gz 404.nii.gz 405.nii.gz \
+            406.nii.gz 408.nii.gz 410.nii.gz \
+            414.nii.gz 417.nii.gz 419.nii.gz \
+            420.nii.gz 422.nii.gz 424.nii.gz \
+            426.nii.gz 427.nii.gz 428.nii.gz \
+            429.nii.gz 430.nii.gz 431.nii.gz \
+            432.nii.gz 436.nii.gz 438.nii.gz \
+            439.nii.gz 442.nii.gz 443.nii.gz \
+            444.nii.gz 445.nii.gz 446.nii.gz \
+            451.nii.gz 455.nii.gz 456.nii.gz \
+            457.nii.gz 459.nii.gz 462.nii.gz \
+            463.nii.gz 465.nii.gz 466.nii.gz \
+            467.nii.gz 469.nii.gz 470.nii.gz \
+            471.nii.gz 472.nii.gz 477.nii.gz \
+            479.nii.gz 482.nii.gz 483.nii.gz \
+            485.nii.gz 488.nii.gz 496.nii.gz \
+            497.nii.gz 498.nii.gz 500.nii.gz \
+            501.nii.gz 503.nii.gz 504.nii.gz \
+            505.nii.gz 506.nii.gz 507.nii.gz \
+            509.nii.gz 510.nii.gz 512.nii.gz \
+            513.nii.gz 515.nii.gz 518.nii.gz \
+            519.nii.gz 520.nii.gz
+
+    mv t1w_${i}mm_merged.nii.gz ../
+    cd ..
+    rm $i/
 done
-# for mm in 2 4 6 8; do
-#     cd $project/
-    # mkdir modulated/${mm}mm
-# smoothed_${mm}
 
 # fslmerge -t t1w_${mm}_merged 001_mod_${mm}.nii.gz 002_mod_${mm}.nii.gz 004_mod_${mm}.nii.gz \
 #     006_mod_${mm}.nii.gz 008_mod_${mm}.nii.gz 011_mod_${mm}.nii.gz \
