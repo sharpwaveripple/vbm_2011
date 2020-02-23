@@ -134,7 +134,7 @@ for i in 4 6 8; do
 
     mv t1w_${i}mm_merged.nii.gz ../
     cd ..
-    rm $i/
+    rm -rf $i/
 done
 
 # fslmerge -t t1w_${mm}_merged 001_mod_${mm}.nii.gz 002_mod_${mm}.nii.gz 004_mod_${mm}.nii.gz \
