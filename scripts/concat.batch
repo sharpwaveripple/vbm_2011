@@ -18,7 +18,8 @@ cd $project/
 mkdir modulated/
 mod_files=$(ls $project/nlin_template/gm_mod)
 for i in $mod_files; do
-    echo $i
+    subj=$(echo $i | cut -d'_' -f1)
+    echo $subj
 done
 # for mm in 2 4 6 8; do
 #     cd $project/
