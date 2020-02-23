@@ -14,7 +14,7 @@ project=$root/JT/vbm_${tp}/
 
 cd $project
 
-randomise -i nlin_template/smoothed_8mm/t1w_8mm_merged.nii.gz \
-          -o randomise/AEStotal \
+randomise -i nlin_template/smoothed_4mm/t1w_4mm_merged.nii.gz \
+          -o randomise/AEStotal_4mm \
           -d scripts/design.mat -t scripts/design.con \
           -n 2000 -T -m gm.nii.gz
