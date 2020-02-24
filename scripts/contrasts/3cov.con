@@ -1,0 +1,10 @@
+/NumWaves 3
+/NumPoints 7
+/Matrix
+/NumWaves 4
+/NumPoints 4
+/Matrix
+1   0   0   0
+-1  0   0   0
+0   1   0   0
+0  -1   0   0
