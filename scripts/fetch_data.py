@@ -25,15 +25,15 @@ for i in range(1, 4):
         var = [x for x in j] + ['age'] + ['intercept']
         fname = '_'.join([d[x] for x in var if x in d])
         sub = df[var]
-        with open(f'matrices/{fname}.mat', 'w+') as f:
-            f.write(f'\\NumWaves {sub.shape[1]}\n')
-            f.write(f'\\NumPoints {sub.shape[0]}\n')
-            f.write(f'\\Matrix\n')
-        sub.to_csv(f'matrices/{fname}.mat', mode='a', sep='\t', header=False, index=False)
+        # with open(f'matrices/{fname}.mat', 'w+') as f:
+        #     f.write(f'\\NumWaves {sub.shape[1]}\n')
+        #     f.write(f'\\NumPoints {sub.shape[0]}\n')
+        #     f.write(f'\\Matrix\n')
+        sub.to_csv(f'matrices/{fname}.txt', mode='w+', sep='\t', header=False, index=False)
 
         template_file = 'randomise_template.batch'
         rand_file = f'randomise_scripts/{fname}.batch'
-        contrasts = f'{len(var)-1}cov.txt'
+        contrasts = f'{len(var)-1}cov.con'
 
         replacement_d = {'design.mat': f'{fname}.mat',
                          'design.con': f'{contrasts}',

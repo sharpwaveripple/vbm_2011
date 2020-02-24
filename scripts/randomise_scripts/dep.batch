@@ -18,6 +18,6 @@ for i in 4 6 8; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
             -o randomise/dep \
             -d scripts/matrices/dep.mat \
-            -t scripts/contrasts/2cov.txt \
+            -t scripts/contrasts/2cov.con \
             -n 2000 -T -m gm.nii.gz
 done
