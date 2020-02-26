@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #PBS -N randomise
-#PBS -q batch
+#PBS -q verylong
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=48:00:00
-#PBS -l mem=64gb
+#PBS -l walltime=72:00:00
+#PBS -l mem=32gb
 #PBS -j oe
 #PBS -o /home/mrphys/jontay/tmp
 
@@ -16,7 +16,7 @@ cd $project
 
 for i in 4 6 8; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
-            -o randomise/apathy \
+            -o randomise/apathy_${i}mm \
             -d scripts/matrices/apathy.mat \
             -t scripts/contrasts/2cov.con \
             -n 2000 -T -m gm.nii.gz

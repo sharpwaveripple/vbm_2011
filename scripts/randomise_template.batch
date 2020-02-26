@@ -16,7 +16,7 @@ cd $project
 
 for i in 4 6 8; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
-            -o randomise/output_prefix \
+            -o randomise/output_prefix_${i}mm \
             -d scripts/matrices/design.mat \
             -t scripts/contrasts/design.con \
             -n 2000 -T -m gm.nii.gz

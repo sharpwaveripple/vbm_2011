@@ -16,7 +16,7 @@ cd $project
 
 for i in 4 6 8; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
-            -o randomise/apathy_dep \
+            -o randomise/apathy_dep_${i}mm \
             -d scripts/matrices/apathy_dep.mat \
             -t scripts/contrasts/3cov.con \
             -n 2000 -T -m gm.nii.gz
