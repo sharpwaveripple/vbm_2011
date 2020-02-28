@@ -14,7 +14,7 @@ project=$root/JT/vbm_${tp}/
 
 cd $project
 
-for i in 2 3 4; do
+for i in 2 4 6; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
             -o randomise/apathy_${i}mm \
             -d scripts/matrices/apathy.mat \
