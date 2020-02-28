@@ -14,10 +14,10 @@ project=$root/JT/vbm_${tp}/
 
 cd $project
 
-for i in 4 6 8; do
+for i in 2 3 4; do
   randomise -i modulated/t1w_${i}mm_merged.nii.gz \
             -o randomise/apathy_${i}mm \
             -d scripts/matrices/apathy.mat \
-            -t scripts/contrasts/2cov.con \
-            -n 2000 -T -m gm.nii.gz
+            -t scripts/contrasts/3cov.con \
+            -n 5000 -T -m gm.nii.gz
 done

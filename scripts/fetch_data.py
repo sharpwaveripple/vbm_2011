@@ -22,7 +22,7 @@ _list = ['AEStotal', 'CESDtotal', 'MMSE']
 for i in range(1, 4):
     comb = combinations(_list, i)
     for j in comb:
-        var = [x for x in j] + ['age'] + ['intercept']
+        var = [x for x in j] + ['age'] + ['eTIV'] + ['intercept']
         fname = '_'.join([d[x] for x in var if x in d])
         sub = df[var]
         # with open(f'matrices/{fname}.mat', 'w+') as f:
